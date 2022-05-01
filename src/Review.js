@@ -23,6 +23,17 @@ const Review = () => {
   const nextPerson = () => {
     setIndex((prevIndex) => fixIndex(prevIndex + 1));
   };
+
+  const randomPerson = () => {
+    setIndex((prevIndex) => {
+      let randomIndex = Math.floor(Math.random() * people.length);
+      // if its same person go next person
+      if (prevIndex === randomIndex) {
+        randomIndex++;
+      }
+      return fixIndex(randomIndex);
+    });
+  };
   return (
     <article className='review'>
       <div className='img-container'>
@@ -42,7 +53,9 @@ const Review = () => {
           <FaChevronRight />
         </button>
       </div>
-      <button className='random-btn'>suprise me</button>
+      <button className='random-btn' onClick={randomPerson}>
+        suprise me
+      </button>
     </article>
   );
 };
